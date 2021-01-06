@@ -17,7 +17,7 @@
 
 <p align="center">
   <a href="https://github.com/nvmelo/nome-idade">
-    <img src="https://www.flaticon.com/svg/static/icons/svg/1970/1970023.svg" width="80" height="80">
+    <img src="img/logo.png" width="80" height="80">
   </a>
 
   <h3 align="center">nome-idade</h3>
