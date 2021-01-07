@@ -1,5 +1,6 @@
 var pessoas = [];
-tabela = document.getElementById("tabela");
+var tabela = document.getElementById("tabela");
+
 
 function cadPessoa (nome, idade) {
     
@@ -9,6 +10,7 @@ function cadPessoa (nome, idade) {
     }
 
     addPessoa(nome, idade);
+    ordenaTabela();
     atualizaTabela();
 }
 
@@ -25,7 +27,6 @@ function addPessoa (nome, idade) {
 
 function atualizaTabela () {
     tabela.innerHTML = "";
-    ordenaTabela();
 
     for (let i=0; i<pessoas.length; i++) {
         var linha = tabela.insertRow(i);
@@ -39,7 +40,7 @@ function atualizaTabela () {
         //Preenche células
         cellNome.innerHTML = pessoas[i].nome;
         cellIdade.innerHTML = pessoas[i].idade;
-        cellEdita.innerHTML = cellEdita.innerHTML + "<button type='button'>Editar</button>"
+        cellEdita.innerHTML = cellEdita.innerHTML + "<button type='button' id ='editPessoa'>Editar</button>"
         cellDeleta.innerHTML = cellDeleta.innerHTML + "<button type='button'>Deletar</button>"
     }
 
@@ -52,3 +53,10 @@ function ordenaTabela() {
     //Reverte a ordenação atual
     //pessoas.reverse((a,b) => a.idade - b.idade);
 }
+
+function reverteSort() {
+    pessoas.reverse((a,b) => b.idade - a.idade);
+    atualizaTabela();
+}
+
+
