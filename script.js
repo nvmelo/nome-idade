@@ -39,8 +39,8 @@ function atualizaTabela () {
         //Preenche células
         cellNome.innerHTML = pessoas[i].nome;
         cellIdade.innerHTML = pessoas[i].idade;
-        cellDeleta.innerHTML = cellDeleta.innerHTML + `<button type='button' onclick='delPessoa(${i})'>Deletar</button>`
-        cellEdita.innerHTML = cellEdita.innerHTML + `<button type='button' onclick='editPessoa(${i})'>Editar</button>`
+        cellDeleta.innerHTML = cellDeleta.innerHTML + `<button type='button' onclick='delPessoa(${i})'>Deletar</button>`;
+        cellEdita.innerHTML = cellEdita.innerHTML + `<button type='button' onclick='editPessoa(${i})'>Editar</button>`;
     }
 
 }
@@ -56,13 +56,29 @@ function reverteSort() {
     atualizaTabela();
 }
 
+function atualizaPessoa(index) {
+    nome = document.getElementById("nome").value;
+    idade = document.getElementById("idade").value;
+    pessoas[index].nome = nome;
+    pessoas[index].idade = idade;
+    ordenaTabela();
+    atualizaTabela();
+}
+
+function cancelaEdit() {
+    ordenaTabela();
+    atualizaTabela();
+}
+
 function editPessoa(index) {
     let cellNome, cellIdade, cellBotao;
     cellNome = tabela.rows[index].cells[0];
     cellIdade = tabela.rows[index].cells[1];
     cellBotao = tabela.rows[index].cells[3];
-    //window.alert(cellNome.innerHTML + '  ' + cellIdade.innerHTML + '    ' + cellBotao.innerHTML);
-
+    cellNome.innerHTML = "<input type='text' name='novoNome' id='nome'>";
+    cellIdade.innerHTML = "<input type='text' name='novaIdade' id = 'idade'>";
+    cellBotao.innerHTML = `<button type='button' onclick='atualizaPessoa(${index})'>Salvar</button><button type='button' onclick='cancelaEdit()'>Cancelar</button>`;
+    
 }
 
 function delPessoa(index) {
@@ -72,3 +88,4 @@ function delPessoa(index) {
     ordenaTabela();
     atualizaTabela();
 }
+
