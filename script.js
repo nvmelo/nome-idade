@@ -5,10 +5,12 @@ function cadPessoa (nome, idade) {
     
     if(ehNomeRepetido(nome)) {
         window.alert("O nome '" + nome + "' já está cadastrado!");
+        limpaCampos();
         return;
     }
 
     addPessoa(nome, idade);
+    limpaCampos();
     ordenaTabela();
     atualizaTabela();
 }
@@ -39,8 +41,8 @@ function atualizaTabela () {
         //Preenche células
         cellNome.innerHTML = pessoas[i].nome;
         cellIdade.innerHTML = pessoas[i].idade;
-        cellDeleta.innerHTML = cellDeleta.innerHTML + `<button type='button' onclick='delPessoa(${i})'>Deletar</button>`;
-        cellEdita.innerHTML = cellEdita.innerHTML + `<button type='button' onclick='editPessoa(${i})'>Editar</button>`;
+        cellDeleta.innerHTML = cellDeleta.innerHTML + `<button type='button' class="btn btn-danger" onclick='delPessoa(${i})'>Deletar</button>`;
+        cellEdita.innerHTML = cellEdita.innerHTML + `<button type='button' class="btn btn-primary" onclick='editPessoa(${i})'>Editar</button>`;
     }
 
 }
@@ -74,10 +76,12 @@ function editPessoa(index) {
     let cellNome, cellIdade, cellBotao;
     cellNome = tabela.rows[index].cells[0];
     cellIdade = tabela.rows[index].cells[1];
-    cellBotao = tabela.rows[index].cells[3];
+    cellBotaoCancela = tabela.rows[index].cells[2];
+    cellBotaoEdita = tabela.rows[index].cells[3];
     cellNome.innerHTML = "<input type='text' name='novoNome' id='nome'>";
     cellIdade.innerHTML = "<input type='text' name='novaIdade' id = 'idade'>";
-    cellBotao.innerHTML = `<button type='button' onclick='atualizaPessoa(${index})'>Salvar</button><button type='button' onclick='cancelaEdit()'>Cancelar</button>`;
+    cellBotaoCancela.innerHTML = `<button type='button' class="btn btn-secondary" onclick='cancelaEdit()'>Cancelar</button>`;
+    cellBotaoEdita.innerHTML = `<button type='button' class="btn btn-primary" onclick='atualizaPessoa(${index})'>Salvar</button>`;
     
 }
 
@@ -89,3 +93,7 @@ function delPessoa(index) {
     atualizaTabela();
 }
 
+function limpaCampos () {
+    document.getElementById("form1").value='';
+    document.getElementById("form2").value='';
+}
