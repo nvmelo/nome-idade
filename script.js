@@ -28,26 +28,26 @@ function atualizaTabela () {
     tabela.innerHTML = "";
 
     for (let i=0; i<pessoas.length; i++) {
-        var linha = tabela.insertRow(i);
+        let linha = tabela.insertRow(i);
 
         //Insere células da linha
-        var cellNome = linha.insertCell(0);
-        var cellIdade = linha.insertCell(1);
-        var cellEdita = linha.insertCell(2);
-        var cellDeleta = linha.insertCell(3);
+        let cellNome = linha.insertCell(0);
+        let cellIdade = linha.insertCell(1);
+        let cellDeleta = linha.insertCell(2);
+        let cellEdita = linha.insertCell(3);
         
         //Preenche células
         cellNome.innerHTML = pessoas[i].nome;
         cellIdade.innerHTML = pessoas[i].idade;
-        cellEdita.innerHTML = cellEdita.innerHTML + "<button type='button'>Editar</button>"
-        cellDeleta.innerHTML = cellDeleta.innerHTML + "<button type='button'>Deletar</button>"
+        cellDeleta.innerHTML = cellDeleta.innerHTML + `<button type='button' onclick='delPessoa(${i})'>Deletar</button>`
+        cellEdita.innerHTML = cellEdita.innerHTML + `<button type='button' onclick='editPessoa(${i})'>Editar</button>`
     }
 
 }
 
 function ordenaTabela() {
 
-    //Ordena o array de forma descendente
+    //Ordena o array de forma decrescente
     pessoas.sort((a,b) => b.idade - a.idade);
 }
 
@@ -56,3 +56,19 @@ function reverteSort() {
     atualizaTabela();
 }
 
+function editPessoa(index) {
+    let cellNome, cellIdade, cellBotao;
+    cellNome = tabela.rows[index].cells[0];
+    cellIdade = tabela.rows[index].cells[1];
+    cellBotao = tabela.rows[index].cells[3];
+    //window.alert(cellNome.innerHTML + '  ' + cellIdade.innerHTML + '    ' + cellBotao.innerHTML);
+
+}
+
+function delPessoa(index) {
+    if(!window.confirm("Deseja apagar esta linha?"))
+        return;
+    pessoas.splice(index,1);
+    ordenaTabela();
+    atualizaTabela();
+}
