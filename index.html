@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./script.js"></script>
+    <title>Nome e idade</title>
+</head>
+<body>
+    <div>
+        <form>
+            <label for="nome">Nome </label>
+            <input type="text" name="nome"><br>
+            <label for="idade">Idade </label>
+            <input type="text" name="idade"><br>
+            <input type="button" value="Salvar" onclick="cadPessoa(nome.value, idade.value)">
+        </form>
+    </div>
+
+    <div>
+        <table id="tabela">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th onclick="sortTable()">Idade</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
