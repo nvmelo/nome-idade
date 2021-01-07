@@ -1,7 +1,6 @@
 var pessoas = [];
 var tabela = document.getElementById("tabela");
 
-
 function cadPessoa (nome, idade) {
     
     if(ehNomeRepetido(nome)) {
@@ -40,7 +39,7 @@ function atualizaTabela () {
         //Preenche células
         cellNome.innerHTML = pessoas[i].nome;
         cellIdade.innerHTML = pessoas[i].idade;
-        cellEdita.innerHTML = cellEdita.innerHTML + "<button type='button' id ='editPessoa'>Editar</button>"
+        cellEdita.innerHTML = cellEdita.innerHTML + "<button type='button'>Editar</button>"
         cellDeleta.innerHTML = cellDeleta.innerHTML + "<button type='button'>Deletar</button>"
     }
 
@@ -50,13 +49,10 @@ function ordenaTabela() {
 
     //Ordena o array de forma descendente
     pessoas.sort((a,b) => b.idade - a.idade);
-    //Reverte a ordenação atual
-    //pessoas.reverse((a,b) => a.idade - b.idade);
 }
 
 function reverteSort() {
     pessoas.reverse((a,b) => b.idade - a.idade);
     atualizaTabela();
 }
-
 
