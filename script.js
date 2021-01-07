@@ -1,4 +1,5 @@
 var pessoas = [];
+tabela = document.getElementById("tabela");
 
 function cadPessoa (nome, idade) {
     
@@ -8,23 +9,7 @@ function cadPessoa (nome, idade) {
     }
 
     addPessoa(nome, idade);
-
-    novoNome = pessoas[pessoas.length-1].nome;
-    novaIdade = pessoas[pessoas.length-1].idade;
-
-    tabela = document.getElementById("tabela");
-    var qtdLinhas = tabela.rows.length;
-    var linha = tabela.insertRow(qtdLinhas);
-    
-    var cellNome = linha.insertCell(0);
-    var cellIdade = linha.insertCell(1);
-    var cellEdita = linha.insertCell(2);
-    var cellDeleta = linha.insertCell(3);
-
-    cellNome.innerHTML = novoNome;
-    cellIdade.innerHTML = novaIdade;
-    cellEdita.innerHTML = cellEdita.innerHTML + "<button type='button'>Editar</button>"
-    cellDeleta.innerHTML = cellDeleta.innerHTML + "<button type='button'>Deletar</button>"
+    atualizaTabela();
 }
 
 function ehNomeRepetido (nome) {
@@ -38,3 +23,32 @@ function addPessoa (nome, idade) {
     })
 }
 
+function atualizaTabela () {
+    tabela.innerHTML = "";
+    ordenaTabela();
+
+    for (let i=0; i<pessoas.length; i++) {
+        var linha = tabela.insertRow(i);
+
+        //Insere células da linha
+        var cellNome = linha.insertCell(0);
+        var cellIdade = linha.insertCell(1);
+        var cellEdita = linha.insertCell(2);
+        var cellDeleta = linha.insertCell(3);
+        
+        //Preenche células
+        cellNome.innerHTML = pessoas[i].nome;
+        cellIdade.innerHTML = pessoas[i].idade;
+        cellEdita.innerHTML = cellEdita.innerHTML + "<button type='button'>Editar</button>"
+        cellDeleta.innerHTML = cellDeleta.innerHTML + "<button type='button'>Deletar</button>"
+    }
+
+}
+
+function ordenaTabela() {
+
+    //Ordena o array de forma descendente
+    pessoas.sort((a,b) => b.idade - a.idade);
+    //Reverte a ordenação atual
+    //pessoas.reverse((a,b) => a.idade - b.idade);
+}
